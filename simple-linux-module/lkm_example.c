@@ -77,7 +77,7 @@ static int device_release(struct inode *inode, struct file *file){
 }
 
 static int __init lkm_example_init(void) {
-    // fille the buffer with a message
+    // fill the buffer with a message
     strncpy(msg_buffer, EXAMPLE_MSG, MSG_BUFFER_LEN);
     msg_ptr = msg_buffer;
     // register a character device
