@@ -76,6 +76,17 @@ static int device_release(struct inode *inode, struct file *file){
     return 0;
 }
 
+
+// this gets called everytime there is an ioctl command.
+// must be attached to "".ioctl"
+/*
+int device_ioctl(struct inode *inode,
+struct file *file,
+unsigned int ioctl_num,
+unsigned long ioctl_param){ }
+*/
+
+// The __init macro causes the init function to be discarded and its memory freed once the initfunction finishes for built−in drivers, but not loadable modules
 static int __init lkm_example_init(void) {
     // fill the buffer with a message
     strncpy(msg_buffer, EXAMPLE_MSG, MSG_BUFFER_LEN);
@@ -93,6 +104,7 @@ static int __init lkm_example_init(void) {
     // return 0;
 }
 
+// The __exit macro causes the omission of the function when the module is built into the kernel, and like__exit, has no effect for loadable modules.
 static void __exit lkm_example_exit(void) {
     // unregister the character device
     unregister_chrdev(major_num, DEVICE_NAME);
@@ -101,3 +113,8 @@ static void __exit lkm_example_exit(void) {
 
 module_init(lkm_example_init);
 module_exit(lkm_example_exit);
+
+// to capture arguments passed into the module:
+// MODULE_PARAM_DESC(myint, "Description of the parameter")
+// int myint = 3;
+// module_param(myint, int, 0);

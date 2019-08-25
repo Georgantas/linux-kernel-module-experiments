@@ -1,6 +1,9 @@
 
-## Load module
-insmod lkm_example.ko
+## Find the major number of the driver handling a device (5th column)
+ls -al .
+
+## Load module with parameter myvariable passed in
+insmod lkm_example.ko myvariable=5
 
 ## See kernel log
 dmesg
@@ -23,3 +26,6 @@ notes:
 
 ## Delete a character device file
 sudo rm /dev/lkm_example
+
+## Read info of a module
+modinfo serio
