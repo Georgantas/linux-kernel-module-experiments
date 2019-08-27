@@ -5,6 +5,9 @@ ls -al .
 ## Load module with parameter myvariable passed in
 insmod lkm_example.ko myvariable=5
 
+## Load module and all of its dependencies
+modprobe vfat
+
 ## See kernel log
 dmesg
 
