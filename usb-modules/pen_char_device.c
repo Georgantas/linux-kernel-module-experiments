@@ -41,6 +41,12 @@ static ssize_t pen_read(struct file *f, char __user *buf, size_t cnt, loff_t *of
     // note this device has two endpoints: one with
     // address 0x01 and another at 0x82.
     // 0x82 is for input
+    // Refer to the header file <linux/usb.h> under kernel sources, for
+    // the complete list of USB core API prototypes for the other endpoint
+    // specific data transfer functions like usb_control_msg(),
+    // usb_interrupt_msg(), etc. usb_rcvbulkpipe(), usb_sndbulkpipe(), and
+    // many such other macros, also defined in <linux/usb.h>, compute the
+    // actual endpoint bitmask to be passed to the various USB core APIs.
     retval = usb_bulk_msg(device, usb_rcvbulkpipe(device, BULK_EP_IN),
             bulk_buf, MAX_PKT_SIZE, &read_cnt, 5000);
     if (retval)
