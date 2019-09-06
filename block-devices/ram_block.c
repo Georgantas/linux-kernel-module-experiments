@@ -77,6 +77,8 @@ static int rb_transfer(struct request *req)
 {
 	//struct rb_device *dev = (struct rb_device *)(req->rq_disk->private_data);
 
+	// the requests are in terms of "sectors"
+	// it seems like there's no concept of cylinders and heads
 	int dir = rq_data_dir(req);
 	sector_t start_sector = blk_rq_pos(req);
 	unsigned int sector_cnt = blk_rq_sectors(req);
