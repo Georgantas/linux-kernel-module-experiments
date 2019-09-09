@@ -7,6 +7,14 @@ Filesystems in Linux can be implemented as kernel modules. But there is also the
 
 Basically, the initialization function of your filesystem driver module needs just to call a register_filesystem() function, and give it as a parameter a structure that includes a function pointer that identifies the function in your filesystem driver that will be used as the first step in identifying your filesystem type and mounting it.
 
+Unlike character or block drivers, the file system drivers involve not just one structure of function pointers, but instead 5 structures of function pointers, for the various interfaces, provided by a file system. These are:
+
+- struct file_system_type – contains functions to operate on the super block
+- struct super_operations – contains functions to operate on the inodes
+- struct inode_operations – contains functions to operate on the directory entries
+- struct file_operations – contains functions to operate on the file data (through page cache)
+- struct address_space_operations – contains page cache operations for the file data
+
 See:
 
 ```
