@@ -3,6 +3,8 @@ https://sysplay.github.io/books/LinuxDrivers/book/Content/Part18.html
 
 https://www.tldp.org/LDP/khg/HyperNews/get/fs/vfstour.html
 
+https://github.com/ARMmbed/littlefs
+
 Filesystems in Linux can be implemented as kernel modules. But there is also the FUSE (Filesystem in USErspace) interface, which can allow a regular user-space process to act as a filesystem driver. If you're prototyping a new filesystem, implementing it first using the FUSE interface could make the testing and development easier. Once you have the internals of the filesystem worked out in FUSE form, you might then start implementing a performance-optimized kernel module version of it.
 
 Basically, the initialization function of your filesystem driver module needs just to call a register_filesystem() function, and give it as a parameter a structure that includes a function pointer that identifies the function in your filesystem driver that will be used as the first step in identifying your filesystem type and mounting it.
